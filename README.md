@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # How to use the Flow Client Library (FCL) with SvelteKit
 
 Everything you need to build a SvelteKit project with the Flow Client Library (FCL).
@@ -29,3 +30,6 @@ npm run build
 ```
 
 > You can preview the built app with `npm run preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.
+=======
+# emerald-gateway-components
+>>>>>>> 9a4d8d13d5f7a0ffb77f08674eff06df3cb8a33e
