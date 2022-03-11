@@ -1,54 +1,195 @@
-<h2>
-	Now we can have expanded content like this
-</h2>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam placeat recusandae est! Nesciunt consectetur, fuga voluptatem accusantium iste molestias aliquid!</p>
-<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur deleniti natus temporibus eius quam. Id ullam quaerat itaque dicta rem, molestiae adipisci corrupti blanditiis sunt eveniet. Vero illo labore eligendi? Nobis molestiae facere maxime repudiandae nemo veritatis quae earum velit.</p>
-<img src="https://i.picsum.photos/id/1062/680/400.jpg" alt="puppy in sheet" />
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum eos praesentium ut cupiditate earum error quidem aperiam quae, voluptates cumque. Incidunt, mollitia exercitationem harum tempora possimus sed impedit animi accusantium explicabo dolorum voluptatibus vero autem fugiat ratione dolore magni? Cum rerum quod doloribus culpa impedit quo quos quidem nostrum, libero aliquam nulla laudantium dolor possimus quaerat eum autem nihil sapiente magnam sit. Autem, sunt. Ipsa at, sint labore ipsam omnis, eligendi delectus numquam laborum hic est, deserunt minima repudiandae quaerat aut adipisci exercitationem perferendis animi. Quidem harum incidunt porro fugiat pariatur a placeat, architecto voluptatem, quos corporis voluptatum deserunt quibusdam animi sequi est labore magnam? Ad delectus debitis impedit inventore hic deleniti, temporibus facilis, expedita obcaecati adipisci eius ipsam earum?</p>
-<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam, quaerat. Nostrum officia aspernatur nemo iure accusantium consequuntur cupiditate esse atque blanditiis fuga perferendis modi explicabo voluptatum vitae unde, velit magni a molestiae magnam neque, distinctio, hic praesentium dolores optio. Beatae?</p>
-<blockquote>Some inspiring quotes are better than others, but this one is the best</blockquote>
-<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum dolorum facere beatae commodi magnam molestiae non ad cum, sequi distinctio explicabo quaerat temporibus error ex esse incidunt doloribus ducimus earum excepturi et cupiditate corporis laudantium deleniti! Error libero natus incidunt quam recusandae amet non fugit tenetur, temporibus quis odit blanditiis nulla voluptatum voluptate rerum corporis pariatur eius. Numquam tenetur quam autem aspernatur officiis cupiditate odio rerum repellat alias nesciunt. Quae saepe corrupti est, vero ipsa odio nesciunt rerum ad ex.</p>
-<div class="split">
-<div>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo voluptatum dolore vel necessitatibus nulla sit, molestias quia nesciunt delectus maiores eum culpa porro, ducimus deserunt natus facere mollitia voluptatibus! Voluptatibus.</p>
-  <br>
-  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde nisi laboriosam error fuga porro quisquam voluptatum enim similique provident nam! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minus eum illo amet temporibus praesentium nemo harum, earum autem veritatis qui!</p>
-</div>
-<div>
-  <img src="https://i.picsum.photos/id/237/320/320.jpg" alt="doggo">
-</div>
-</div>
-<div class="split">
+<script>
+import { createEventDispatcher } from 'svelte';
+import Icon from "@iconify/svelte";
+import PrimaryBtn from "../PrimaryBtn.svelte"
 
-<div>
-  <img src="https://i.picsum.photos/id/169/320/320.jpg" alt="doggo">
-</div>
-<div>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo voluptatum dolore vel necessitatibus nulla sit, molestias quia nesciunt delectus maiores eum culpa porro, ducimus deserunt natus facere mollitia voluptatibus! Voluptatibus.</p>
-  <br>
-  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde nisi laboriosam error fuga porro quisquam voluptatum enim similique provident nam! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestiae id, rem libero consequuntur autem delectus cum ipsam ipsum eos eveniet.</p>
-</div>
-</div>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum eos praesentium ut cupiditate earum error quidem aperiam quae, voluptates cumque. Incidunt, mollitia exercitationem harum tempora possimus sed impedit animi accusantium explicabo dolorum voluptatibus vero autem fugiat ratione dolore magni? Cum rerum quod doloribus culpa impedit quo quos quidem nostrum, libero aliquam nulla laudantium dolor possimus quaerat eum autem nihil sapiente magnam sit. Autem, sunt. Ipsa at, sint labore ipsam omnis, eligendi delectus numquam laborum hic est, deserunt minima repudiandae quaerat aut adipisci exercitationem perferendis animi. Quidem harum incidunt porro fugiat pariatur a placeat, architecto voluptatem, quos corporis voluptatum deserunt quibusdam animi sequi est labore magnam? Ad delectus debitis impedit inventore hic deleniti, temporibus facilis, expedita obcaecati adipisci eius ipsam earum?</p>
-<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam, quaerat. Nostrum officia aspernatur nemo iure accusantium consequuntur cupiditate esse atque blanditiis fuga perferendis modi explicabo voluptatum vitae unde, velit magni a molestiae magnam neque, distinctio, hic praesentium dolores optio. Beatae?</p>
+export let projectName
+export let projectDescription
+
+const dispatch = createEventDispatcher();
+
+function sayHello() {
+  console.log("successful interaction")
+  dispatch('message', {
+    text: 'Hello!'
+  });
+}''
+
+const handleChange = (e) => {
+  console.log(e.target.value)
+}
+</script>
+
+<main class="container">
+  <header>
+    <h5 class="title">TAB 1</h5>
+    <p>Something about Tab 1</p>
+  </header>
+
+  <section class="inputs-container">
+    <div>
+      <h6>Name</h6>
+      <input
+        placeholder="My awesome project"
+        value={projectName ? projectName : null}
+        on:change={handleChange}
+      />
+    </div>
+    <div>
+      <h6>Description</h6>
+      <main class="textarea-header">
+        <section class="text-icons-container">
+          <div class="text-icon">
+            <Icon icon="bx:bold" height={20} />
+          </div>
+          <div class="text-icon">
+            <Icon icon="bx:italic" height={19} />
+          </div>
+          <div class="text-icon">
+            <Icon icon="ant-design:underline-outlined" height={20} />
+          </div>
+          <div style="width: 8px;" />
+          <div class="text-icon">
+            <Icon icon="ooui:underline-a" height={16} />
+            <Icon icon="akar-icons:chevron-down" height={14} />
+          </div>
+        </section>
+        <section class="text-type-container">
+          <div>
+            <span style="font-weight: 300; font-size:16px">Normal Text</span>
+          </div>
+          <div class="text-icon">
+            <Icon icon="akar-icons:chevron-down" height={18} />
+          </div>
+        </section>
+        <section class="alignment-container">
+          <div class="alignment-icon">
+            <Icon icon="akar-icons:text-align-left" height={18} />
+          </div>
+          <div class="alignment-icon">
+            <Icon icon="akar-icons:text-align-center" height={18} />
+          </div>
+          <div class="alignment-icon">
+            <Icon icon="akar-icons:text-align-right" height={18} />
+          </div>
+        </section>
+        <section class="menu-icon-container">
+          <div class="text-icon">
+            <Icon icon="carbon:overflow-menu-vertical" height={22} />
+          </div>
+        </section>
+      </main>
+      <textarea
+        rows="6"
+        placeholder="My awesome project it´s ..."
+        value={projectDescription ? projectDescription : null}
+        on:change={handleChange}
+      />
+    </div>
+  </section>
+  <footer>
+    <PrimaryBtn label={"SAVE"} onPressed={sayHello} />
+  </footer>
+</main>
 
 <style>
-p {
-font-size: 17px;
-}
+  textarea {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+  }
 
-.split {
-display: grid;
-grid-template-columns: 1fr 1fr;
-}
-img {
-border-radius: 1rem;
-}
-blockquote {
-font-size: 30px;
-color: #888;
-position: relative;
-}
+  h5 {
+    margin: 0;
+    padding: 0;
+  }
 
-blockquote:before {content: "";position: absolute;left: -40px;top: 17%;height: 60px;width: 4px;background: #6878d7;}
+  header {
+    height: 18%;
+  }
+  footer {
+    height: 8%;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    padding-right: 1rem;
+  }
+
+  .menu-icon-container {
+    display: flex;
+    height: 100%;
+    width: 6%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .alignment-icon {
+    width: 33.3%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .alignment-container {
+    display: flex;
+    width: 20%;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+    border-right: 1px solid var(--form-element-border-color);
+  }
+
+  .text-type-container {
+    display: flex;
+    width: 34%;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+    border-right: 1px solid var(--form-element-border-color);
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .text-icons-container {
+    display: flex;
+    width: 40%;
+    height: 100%;
+    justify-content: start;
+    align-items: center;
+    border-right: 1px solid var(--form-element-border-color);
+  }
+
+  .text-icon {
+    display: flex;
+    height: 100%;
+    width: 1.8rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .textarea-header {
+    display: flex;
+    width: 100%;
+    height: 1.6rem;
+    border: 1px solid var(--form-element-border-color);
+    border-bottom: none;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+    margin-top: 3px;
+  }
+
+  .inputs-container {
+    height: 70%;
+    width: 100%;
+  }
+  .container {
+    height: 100%;
+    width: 100%;
+  }
+
+  .title {
+    letter-spacing: 3px;
+  }
 </style>

@@ -1,60 +1,95 @@
 <script>
+    import { fade } from 'svelte/transition'
+	import Icon from "@iconify/svelte";
 	export let items = [];
 	export let activeTabValue = 1;
+  let isHovered = {right: false, left: false}
   
+  const handleMessage = event => { handleAction("increment")}
+  const handleAction = action => action === "increment" ? activeTabValue ++ : activeTabValue --
 	const handleClick = tabValue => () => (activeTabValue = tabValue);
 	const handleIconPress = action => action === "increment" ? activeTabValue += 1 : activeTabValue -= 1
 </script>
 
 <!-- TabsList -->
-<section class="tab-list-container">
-  <div style={{ width: 50 }}>
-    <button on:click={() => handleIconPress("decrement")}> icon </button>
-  </div>
-
-  <ul>
-    {#each items as item}
-      <li class={activeTabValue === item.value ? "active" : ""}>
-        <span on:click={handleClick(item.value)}>{item.label}</span>
-      </li>
-    {/each}
-  </ul>
-
-  <div style={{ width: 50 }}>
-    <button on:click={() => handleIconPress("increment")}> icon </button>
-  </div>
-</section>
-
-<!-- TabContent -->
-{#each items as item}
-  {#if activeTabValue == item.value}
-    <div class="box">
-      <svelte:component this={item.component} />
+<main class="main-container">
+  <section class="tab-list-container">
+    <div class="chevron-wrapper" on:click={() => handleAction("decrement")}>
+      <div
+        class="chevron-icon"
+        on:pointerenter={() => (isHovered.left = !isHovered.left)}
+        on:pointerleave={() => (isHovered.left = !isHovered.left)}
+      >
+        <Icon
+          class="chevron-icon"
+          icon="akar-icons:circle-chevron-left"
+          height={36}
+          color={isHovered.left ? "var(--primary)" : "lightgrey"}
+        />
+      </div>
     </div>
-  {/if}
-{/each}
+
+    <ul>
+      {#each items as item}
+        <li
+          class={activeTabValue === item.value ? "active" : "inactive-tab"}
+          on:click={handleClick(item.value)}
+        >
+          <Icon
+            icon={item.icon}
+            height={30}
+            color={activeTabValue === item.value
+              ? "var(--primary)"
+              : "lightgrey"}
+          />
+        </li>
+      {/each}
+    </ul>
+
+    <div class="chevron-wrapper" on:click={() => handleAction("increment")}>
+      <div
+        class="chevron-icon"
+        on:pointerenter={() => (isHovered.right = !isHovered.right)}
+        on:pointerleave={() => (isHovered.right = !isHovered.right)}
+      >
+        <Icon
+          class="chevron-icon"
+          icon="akar-icons:circle-chevron-right"
+          height={36}
+          color={isHovered.right ? "var(--primary)" : "lightgrey"}
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- TabContent -->
+  {#each items as item}
+    {#if activeTabValue == item.value}
+      <div class="tab-content-container" in:fade={{ duration: 1000 }}>
+        <svelte:component this={item.component} on:message={handleMessage} />
+      </div>
+    {/if}
+  {/each}
+</main>
 
 <style>
-  .box {
-    margin-bottom: 10px;
-    padding: 40px;
+  .main-container {
+    height: 100%;
   }
+
   ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 0;
     padding: 0;
-    /* height: 50%;  */
+    height: 70%;
     width: 70%;
     max-width: 70%;
     overflow: scroll;
     border-radius: 9px;
     background: rgba(255, 255, 255, 0.08);
     list-style: none;
-
-    /* display: flex;
-		/* border-bottom: 1px solid teal; */
   }
 
   ul::-webkit-scrollbar {
@@ -62,19 +97,21 @@
   }
 
   li {
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: -1px;
-    width: 100%;
+    /* margin-bottom: -1px; */
+    width: 20%;
     height: 100%;
-	min-width: 33.3%;
+    min-width: 20%;
+    cursor: pointer;
   }
 
   span {
     border: 1px solid transparent;
-    display: block;
-    padding: 0.5rem 1rem;
+    /* padding: 0.5rem 1rem; */
     cursor: pointer;
   }
 
@@ -82,7 +119,8 @@
     /* border-color: #e9ecef #e9ecef #dee2e6; */
   }
 
-  li.active > span {
+  /* li.active > span { */
+  li.active {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -93,17 +131,39 @@
     background-color: rgba(218, 4, 106, 0.1);
     margin: 0;
     padding: 0;
-    width: 100%;
+    width: 20%;
     height: 100%;
-	min-width: 33.3%;
+    min-width: 20%;
+  }
 
-    /* border-color: #dee2e6 #dee2e6 #fff; */
+  .inactive-tab:hover{
+    background: var(--form-element-border-color)
+  }
+
+  .chevron-icon {
+    cursor: pointer;
+  }
+
+  .tab-content-container {
+    height: 80%;
+    padding: 1rem 2rem;
   }
 
   .tab-list-container {
     display: flex;
     width: 100%;
-    height: 10%;
+    height: 12%;
     justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+  }
+
+  .chevron-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 20%;
   }
 </style>

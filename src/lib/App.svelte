@@ -2,6 +2,8 @@
 	import Tab1 from "./components/tabs/Tab1.svelte";
 	import Tab2 from "./components/tabs/Tab2.svelte";
 	import Tab3 from "./components/tabs/Tab3.svelte";
+	import Tab4 from "./components/tabs/Tab4.svelte";
+	import Tab5 from "./components/tabs/Tab5.svelte";
  
   import Tabs from "./components/tabs/Tabs.svelte";
 
@@ -16,66 +18,54 @@
   let items = [
     { label: "Content",
 		 value: 1,
-		 component: Tab1
+		 component: Tab1,
+     icon: "ic:outline-subtitles"
+
 		},
     { label: "Interactions",
 		 value: 2,
-		 component: Tab2
+		 component: Tab2,
+      icon: "ant-design:link-outlined"
+
 		},
     { label: "Tab 3",
 		 value: 3,
-		 component: Tab3
+		 component: Tab3,
+      icon: "icomoon-free:coin-dollar"
+
 		},
-    { label: "Tab 3",
-		 value: 3,
-		 component: Tab3
+    { label: "Tab 4",
+		 value: 4,
+		 component: Tab4,
+     icon: "fluent:collections-add-24-regular"
+
+
 		},
-    { label: "Tab 3",
-		 value: 3,
-		 component: Tab3
+    { label: "Tab 5",
+		 value: 5,
+		 component: Tab5,
+     icon: "bi:card-image"
+
+
+		},
+    { label: "Tab 5",
+		 value: 6,
+		 component: Tab5,
+      icon: "ic:outline-subtitles"
+		},
+    { label: "Tab 5",
+		 value: 7,
+		 component: Tab5,
+      icon: "ic:outline-subtitles"
 		}
   ];
 </script>
+
 <main>
   <section>
-      <Tabs {items} />
-
+    <Tabs {items} />
   </section>
-
 </main>
-<!-- <script>
-  import { onMount } from "svelte";
-  import ScrollBar from "./components/ScrollBar.svelte";
-  import TabContent from "./components/TabContent.svelte";
-  import Tab1 from  "./components/tabs/TitleTab.svelte";
-  import Tab2 from  "./components/tabs/TitleTab2.svelte";
-  import tabs from "./tabs.js";
-
-  // state
-  let selectedId = 0;
-
-
-  // logic
- 
-
-  const handleTabSelection = (event) => {
-    console.log("event", event.detail.id)
-    selectedId = event.detail.id
-
-  }
-
-</script> -->
-
-<!-- <main>
-  <section>
-    <ScrollBar
-      bind:activeTabValue={selectedId}
-      items={tabs}
-      on:message={handleTabSelection}
-    />
-    <TabContent selectedId={selectedId} />
-  </section>
-</main> -->
 
 <style>
   main {
@@ -106,4 +96,4 @@
   section::-webkit-scrollbar {
     display: none;
   }
-</style> 
+</style>

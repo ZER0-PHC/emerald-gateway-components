@@ -9,23 +9,23 @@
   <slot />
 </main>
 
-<footer>
+<!-- <footer>
   <p>
     visit <a href="https://docs.onflow.org">docs.onflow.org</a> to learn more.
   </p>
   <p>
    
   </p>
-</footer>
+</footer> -->
 
 <style>
   footer {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     justify-content: center;
     align-items: center;
     padding: 40px;
-    height: 6vh;
+    height: 0.5vh;
   }
 
   footer a {
