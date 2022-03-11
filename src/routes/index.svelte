@@ -1,16 +1,16 @@
 
 <script>
-	import Auth from '$lib/Auth.svelte';
+	import App from '$lib/App.svelte';
   import Transaction from '$lib/Transaction.svelte';
 
 </script>
 
-<svelte:head>
+<!-- <svelte:head>
 	<title>Home</title>
-</svelte:head>
+</svelte:head> -->
 
-<div class="mb-2">
+<!-- <div class="mb-2">
   <Transaction />
-</div>
+</div> -->
 
-<Auth/>
+<App/>
