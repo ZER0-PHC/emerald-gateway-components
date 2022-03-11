@@ -26,7 +26,7 @@ const handleChange = (e) => {
     <p>Something about Tab 1</p>
   </header>
 
-  <section class="inputs-container">
+  <main class="inputs-container">
     <div>
       <h6>Name</h6>
       <input
@@ -80,13 +80,13 @@ const handleChange = (e) => {
         </section>
       </main>
       <textarea
-        rows="6"
+        rows="4"
         placeholder="My awesome project it´s ..."
         value={projectDescription ? projectDescription : null}
         on:change={handleChange}
       />
     </div>
-  </section>
+  </main>
   <footer>
     <PrimaryBtn label={"SAVE"} onPressed={sayHello} />
   </footer>
@@ -106,13 +106,16 @@ const handleChange = (e) => {
   }
 
   header {
-    height: 18%;
+    height: 16%;
   }
   footer {
-    height: 8%;
+     margin: 0;
+     padding: 0;
+    height: 10%;
     width: 100%;
     display: flex;
     justify-content: end;
+    align-items: flex-end;
     padding-right: 1rem;
   }
 
@@ -181,7 +184,7 @@ const handleChange = (e) => {
   }
 
   .inputs-container {
-    height: 70%;
+    height: 65%;
     width: 100%;
   }
   .container {

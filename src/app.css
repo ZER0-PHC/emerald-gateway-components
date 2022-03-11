@@ -92,8 +92,8 @@
 /* Automatically enabled if user has Dark mode enabled */
 @media only screen and (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --primary: #00ee8a;
-    --primary-hover: #00ce78;
+    --primary: #DA046A;
+    --primary-hover: #DA046A;
     --primary-focus: rgba(67, 160, 71, 0.25);
     --primary-inverse: #FFF;
   }
@@ -102,8 +102,8 @@
 /* Green Dark scheme (Forced) */
 /* Enabled if forced with data-theme="dark" */
 [data-theme="dark"] {
-  --primary: #00ee8a;
-  --primary-hover: #00ce78;
+  --primary: #DA046A;
+  --primary-hover: #DA046A;
   --primary-focus: rgba(67, 160, 71, 0.25);
   --primary-inverse: #FFF;
 }

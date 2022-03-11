@@ -145,7 +145,7 @@
   }
 
   .tab-content-container {
-    height: 80%;
+    height: 100%;
     padding: 1rem 2rem;
   }
 
