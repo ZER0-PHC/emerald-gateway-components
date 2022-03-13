@@ -22,22 +22,26 @@
      icon: "ic:outline-subtitles"
 
 		},
-    { label: "Interactions",
+    { label: "Tokens",
 		 value: 2,
 		 component: Tab2,
-      icon: "ant-design:link-outlined"
+      // icon: "ant-design:link-outlined",
+      icon: "icomoon-free:coin-dollar"
+
 
 		},
     { label: "Tab 3",
 		 value: 3,
 		 component: Tab3,
-      icon: "icomoon-free:coin-dollar"
+      // icon: "icomoon-free:coin-dollar",
+      icon: "fluent:collections-add-24-regular"
+
 
 		},
     { label: "Tab 4",
 		 value: 4,
 		 component: Tab4,
-     icon: "fluent:collections-add-24-regular"
+     icon: "fa:diamond"
 
 
 		},

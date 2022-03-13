@@ -102,7 +102,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* margin-bottom: -1px; */
     width: 20%;
     height: 100%;
     min-width: 20%;

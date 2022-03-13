@@ -27,7 +27,7 @@ const handleChange = (e) => {
   </header>
 
   <main class="inputs-container">
-    <div>
+    <div style="width:100%">
       <h6>Name</h6>
       <input
         placeholder="My awesome project"
@@ -35,7 +35,7 @@ const handleChange = (e) => {
         on:change={handleChange}
       />
     </div>
-    <div>
+    <div style="width:100%">
       <h6>Description</h6>
       <main class="textarea-header">
         <section class="text-icons-container">
@@ -105,20 +105,8 @@ const handleChange = (e) => {
     padding: 0;
   }
 
-  header {
-    height: 16%;
-  }
-  footer {
-     margin: 0;
-     padding: 0;
-    height: 10%;
-    width: 100%;
-    display: flex;
-    justify-content: end;
-    align-items: flex-end;
-    padding-right: 1rem;
-  }
-
+ 
+  
   .menu-icon-container {
     display: flex;
     height: 100%;
@@ -184,8 +172,12 @@ const handleChange = (e) => {
   }
 
   .inputs-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
     height: 65%;
-    width: 100%;
+    width: 80%;
   }
   .container {
     height: 100%;

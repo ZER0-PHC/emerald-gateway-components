@@ -116,6 +116,27 @@
   --switch-checked-background-color: var(--primary);
 }
 
+section{
+  margin: 0;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  width: 76%;
+  justify-content: center;
+  align-items: flex-start;
+  height: 16%;
+}
+
+footer {
+  height: 8%;
+  width: 80%;
+  display: flex;
+  justify-content: end;
+  padding-right: 1rem;
+}
+
 p{
   font-size: 16px;
 }
@@ -130,9 +151,15 @@ h6{
   padding: 0;
 }
 
+.title {
+  letter-spacing: 2px;
+  font-size: 1rem;
+}
+
 ul{
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 
 li{
@@ -167,17 +194,14 @@ ul{
   height: 86vh;
 }
 .container {
-  margin-top:0;
-  padding-top:0;
-  height: 10vh;
+  height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* .mb-1 {
-  margin-bottom:1em;
-}
-.mb-2 {
-  margin-bottom:2em;
-} */
+
 
 .accent-border {
   border: 1px solid var(--primary);
