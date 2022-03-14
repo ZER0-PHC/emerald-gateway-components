@@ -93,7 +93,7 @@
     border-radius: 20px;
     /* background: rgba(20, 32, 43, 0.5) */
     background: #141e26;
-    filter: drop-shadow(0px 0px 6px rgba(26, 45, 61, 1));
+    box-shadow:var(--card-box-shadow);
     /* outline:8px solid rgba(0, 0, 0, 0.04) */
   }
 

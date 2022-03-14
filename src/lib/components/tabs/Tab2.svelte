@@ -1,21 +1,49 @@
 <script>
-    import Icon from "@iconify/svelte";
-    import PrimaryBtn from "../PrimaryBtn.svelte"
-    import tokensData from "./tabsData/tokensData";
+  import { fly } from 'svelte/transition';
+  import { getContext } from 'svelte';
+	import Dialog from '../Dialog.svelte';
 
-    let hoveredId;
-    let selectedId;
-    
-    const handleChange = ( id) => {
+
+  // import Popup from '../Popup.svelte';
+	import Modal from '../Modal.svelte';
+  import HorizontalSpace from "../HorizontalSpace.svelte";
+  import PrimaryBtn from "../PrimaryBtn.svelte"
+  import tokensData from "./tabsData/tokensData";
+	// import { modal } from '../../stores.js';
+
+  import Icon from "@iconify/svelte";
+
+
+  let hoveredId;
+  let selectedId;
+  let opening = false;
+	let opened = false;
+	let closing = false;
+	let closed = false;
+  let isOpenModal = false;
+
+
+
+    function openModal() {
+        isOpenModal = true;
+    }
+
+    function closeModal() {
+        isOpenModal = false;
+    }
+
+
+  const handleChange = ( id) => {
       console.log("id",id)
       selectedId = id
       // console.log(e.target.value)
     }
 
-    const handlePointerEnter = id => hoveredId = id
-    const handlePointerLeave = id => hoveredId = null
+  const handlePointerEnter = id => hoveredId = id
+  const handlePointerLeave = id => hoveredId = null
 </script>
 
+<Modal isOpenModal={isOpenModal} on:closeModal={closeModal} />
 <main class="container">
   <header>
     <h6 class="title">TOKENS</h6>
@@ -24,7 +52,7 @@
 
   <main class="inputs-container">
     <div class="tokens-container">
-      <ul style="width: 100%; list-style:none;">
+      <ul style="height:88%; width: 100%; list-style:none;">
         {#each tokensData as { id, label, imgUrl }, i}
           <li
             class={hoveredId === id ? "token-active" : "token-inactive"}
@@ -51,18 +79,31 @@
             <section
               style="display:flex; justify-content:end; width:20%; padding-right: 1rem;"
             >
-              <input type="checkbox" on:click={() => handleChange(id)} checked={selectedId === id} />
+              <input
+                type="checkbox"
+                on:click={() => handleChange(id)}
+                checked={selectedId === id}
+              />
             </section>
           </li>
         {/each}
       </ul>
+      <footer class="custom-container">
+        <main class="secondary-btn" on:click={openModal}>
+          <div>
+            <Icon icon="ant-design:plus-circle-outlined" height={"1.2rem"} />
+          </div>
+          <HorizontalSpace value="0.3rem" />
+          <div>ADD CUSTOM TOKEN</div>
+        </main>
+        
+      </footer>
     </div>
   </main>
   <footer>
     <PrimaryBtn label={"SAVE"} />
   </footer>
 </main>
-
 <!-- <div>
           <h6>Url</h6>
           <input
@@ -90,7 +131,7 @@
     width: 100%;
     justify-content: space-between;
     align-items: center;
-       background-color: rgba(218, 4, 106, 0.1);
+    background-color: rgba(218, 4, 106, 0.1);
     cursor: pointer;
   }
 
@@ -116,11 +157,39 @@
     padding: 0;
   }
 
+  .secondary-btn{
+    display: flex;
+    height: 1.6rem;
+    align-items: center;
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    cursor: pointer;
+
+  }
+
+  .secondary-btn:hover {
+    background: rgba(218, 4, 106, 0.1);
+
+  }
+
+  .custom-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 12%;
+    font-size: 0.7rem;
+    color: var(--primary);
+    font-weight: bold;
+    border-top: 2px solid var(--form-element-border-color);
+  }
+
   .tokens-container {
     height: 94%;
     border: 2px solid var(--form-element-border-color);
     width: 76%;
     border-radius: 6px;
+    background: var(--background-color);
   }
 
   .menu-icon-container {
