@@ -1,14 +1,29 @@
 <script>
+  import {  tabs } from "./store"
     import { fade } from 'svelte/transition'
 	import Icon from "@iconify/svelte";
 	export let items = [];
 	export let activeTabValue = 1;
   let isHovered = {right: false, left: false}
+
+  let tabsValue
+  
+  console.log("store tabs", tabs)
+
+  tabs.subscribe(value => {
+		tabsValue = value;
+	});
   
   const handleMessage = event => { handleAction("increment")}
   const handleAction = action => action === "increment" ? activeTabValue ++ : activeTabValue --
 	const handleClick = tabValue => () => (activeTabValue = tabValue);
 	const handleIconPress = action => action === "increment" ? activeTabValue += 1 : activeTabValue -= 1
+
+  // conditional rendering
+  
+
+
+
 </script>
 
 <!-- TabsList -->
@@ -30,7 +45,7 @@
     </div>
 
     <ul>
-      {#each items as item}
+      {#each items as item, i}
         <li
           class={activeTabValue === item.value ? "active" : "inactive-tab"}
           on:click={handleClick(item.value)}
@@ -38,10 +53,17 @@
           <Icon
             icon={item.icon}
             height={30}
-            color={activeTabValue === item.value
+            color={tabsValue[i].done ? "#85DFB4" :  activeTabValue === item.value
               ? "var(--primary)"
               : "lightgrey"}
           />
+          <!-- <Icon
+            icon={item.icon}
+            height={30}
+            color={tabs[i].done 
+              ? "var(--primary)"
+              : "lightgrey"}
+          /> -->
         </li>
       {/each}
     </ul>
@@ -52,6 +74,7 @@
         on:pointerenter={() => (isHovered.right = !isHovered.right)}
         on:pointerleave={() => (isHovered.right = !isHovered.right)}
       >
+       
         <Icon
           class="chevron-icon"
           icon="akar-icons:circle-chevron-right"

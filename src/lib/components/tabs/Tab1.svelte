@@ -1,7 +1,10 @@
 <script>
+  	import { tabs } from '../tabs/store';
+
 import { createEventDispatcher } from 'svelte';
 import Icon from "@iconify/svelte";
 import PrimaryBtn from "../PrimaryBtn.svelte"
+
 
 export let projectName
 export let projectDescription
@@ -13,7 +16,15 @@ function sayHello() {
   dispatch('message', {
     text: 'Hello!'
   });
-}''
+
+  // update store
+  $tabs[0].done = true
+
+  console.log("tabs", $tabs)
+
+  
+
+}
 
 const handleChange = (e) => {
   console.log(e.target.value)
@@ -88,7 +99,7 @@ const handleChange = (e) => {
     </div>
   </main>
   <footer>
-    <PrimaryBtn label={"SAVE"} onPressed={sayHello} />
+    <PrimaryBtn label={"SAVE"} onPressed={() => sayHello()} />
   </footer>
 </main>
 

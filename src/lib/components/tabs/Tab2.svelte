@@ -2,6 +2,10 @@
   import { fly } from 'svelte/transition';
   import { getContext } from 'svelte';
 	import Dialog from '../Dialog.svelte';
+  import { tabs } from '../tabs/store';
+  import { createEventDispatcher } from 'svelte';
+
+  const dispatch = createEventDispatcher();
 
 
   // import Popup from '../Popup.svelte';
@@ -38,6 +42,20 @@
       selectedId = id
       // console.log(e.target.value)
     }
+
+    function sayHello() {
+  console.log("successful interaction")
+  dispatch('message', {
+    text: 'Hello!'
+  });
+
+  // update store
+  $tabs[1].done = true
+
+  console.log("tabs", $tabs)
+
+  
+}
 
   const handlePointerEnter = id => hoveredId = id
   const handlePointerLeave = id => hoveredId = null
@@ -101,7 +119,7 @@
     </div>
   </main>
   <footer>
-    <PrimaryBtn label={"SAVE"} />
+    <PrimaryBtn label={"SAVE"} onPressed={() => sayHello()} />
   </footer>
 </main>
 <!-- <div>
