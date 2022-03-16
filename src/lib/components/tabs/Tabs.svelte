@@ -1,7 +1,10 @@
 <script>
-  import {  tabs } from "./store"
-    import { fade } from 'svelte/transition'
+  import { tabs, tokens, collections } from '../../stores';
+  import { fade } from 'svelte/transition'
 	import Icon from "@iconify/svelte";
+  import { handleTokenSelection, handleCollectionSelection } from "./utils"
+
+  // state
 	export let items = [];
 	export let activeTabValue = 1;
   let isHovered = {right: false, left: false}
@@ -10,14 +13,41 @@
   
   console.log("store tabs", tabs)
 
+
+// logic
   tabs.subscribe(value => {
 		tabsValue = value;
 	});
+
+ 
   
-  const handleMessage = event => { handleAction("increment")}
+  const handleEvent = msg => {
+
+    console.log("msg", msg.detail.event) 
+    const event = msg.detail.event
+    const id = msg.detail.id
+
+    switch (event) {
+      case "selectToken":
+      handleTokenSelection($tokens, id)
+        break;
+        
+      case "selectCollection":
+      handleCollectionSelection($collections, id)
+        break;
+
+      case "continue":
+        $tabs[id].done = true
+        handleAction("increment")
+
+        break;
+    
+      default:
+        break;
+    }
+  }
   const handleAction = action => action === "increment" ? activeTabValue ++ : activeTabValue --
 	const handleClick = tabValue => () => (activeTabValue = tabValue);
-	const handleIconPress = action => action === "increment" ? activeTabValue += 1 : activeTabValue -= 1
 
   // conditional rendering
   
@@ -53,7 +83,9 @@
           <Icon
             icon={item.icon}
             height={30}
-            color={tabsValue[i].done ? "#85DFB4" :  activeTabValue === item.value
+            color={tabsValue[i].done
+              ? "#85DFB4"
+              : activeTabValue === item.value
               ? "var(--primary)"
               : "lightgrey"}
           />
@@ -74,7 +106,6 @@
         on:pointerenter={() => (isHovered.right = !isHovered.right)}
         on:pointerleave={() => (isHovered.right = !isHovered.right)}
       >
-       
         <Icon
           class="chevron-icon"
           icon="akar-icons:circle-chevron-right"
@@ -89,7 +120,7 @@
   {#each items as item}
     {#if activeTabValue == item.value}
       <div class="tab-content-container" in:fade={{ duration: 1000 }}>
-        <svelte:component this={item.component} on:message={handleMessage} />
+        <svelte:component this={item.component} on:message={handleEvent} />
       </div>
     {/if}
   {/each}
@@ -158,8 +189,8 @@
     min-width: 20%;
   }
 
-  .inactive-tab:hover{
-    background: var(--form-element-border-color)
+  .inactive-tab:hover {
+    background: var(--form-element-border-color);
   }
 
   .chevron-icon {

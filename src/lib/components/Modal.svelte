@@ -1,7 +1,9 @@
 <script>
         import { createEventDispatcher } from 'svelte';
+        import { modal, tokens } from "../stores"
         import VerticalSpace from "../components/VerticalSpace.svelte"
         import Icon from "@iconify/svelte"
+
         export let isOpenModal;
         let isHovered;
 
